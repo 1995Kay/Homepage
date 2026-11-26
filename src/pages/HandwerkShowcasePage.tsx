@@ -1,109 +1,124 @@
-import { Link } from 'react-router-dom'
+﻿import { Link } from 'react-router-dom'
+import { Camera, CircleCheck, CircleX, ClipboardList } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
-const benefits = [
-  ['Zeit sparen', 'Einsätze und Arbeitszeiten zentral erfassen und fürs Büro griffbereit halten.'],
-  ['Den Überblick behalten', 'Auf einen Blick sehen, wer auf welcher Baustelle eingeplant ist.'],
-  ['Fortschritte dokumentieren', 'Fotos und Notizen der passenden Baustelle zuordnen.'],
+const problems = [
+  'Fotos auf privaten Handys',
+  'Fehlende Stundenzettel',
+  'Unklare Aufgabenverteilung',
+  'Ständige Kundenrückfragen',
 ]
 
-const modules = [
-  ['Baustellenverwaltung', 'Baustellen anlegen, Mitarbeitende zuweisen und den Stand laufender Arbeiten sehen.'],
-  ['Fotodokumentation', 'Fortschritte per Smartphone mit Foto, Datum und Notiz festhalten. Der Betrieb kann die Bilder später herunterladen.'],
-  ['Einsatzkalender', 'Sehen, wer wann auf welcher Baustelle eingeplant ist.'],
-  ['Digitale Stundenzettel', 'Beginn, Ende und Pausen erfassen und die Arbeitszeit einer Baustelle zuordnen.'],
-  ['Optionales Kundenportal', 'Ausgewählte Fortschritte freigeben, Fragen beantworten und die Abschlussabnahme vorbereiten.'],
-  ['Lager und Material · Ausblick', 'Bestände, Entnahmen und Rückgaben im Blick behalten. Scans und Baustellenzuordnung sind mögliche Ergänzungen.'],
+const statistics = [
+  { label: 'Baustellen', value: 3 },
+  { label: 'Mitarbeiter', value: 5 },
+  { label: 'Einträge', value: 12 },
 ]
 
-const accessModes = [
-  ['Nur intern', 'Die Baustelle ist ausschließlich für den Betrieb sichtbar.'],
-  ['Nur Abschluss', 'Kunden sehen die freigegebene Abschlussdokumentation und die Abschlussabnahme.'],
-  ['Projektbegleitung', 'Kunden sehen ausgewählte Fortschritte und Fotos, können Fragen oder Änderungswünsche senden und erhalten am Ende die Abschlussabnahme.'],
+const workflow = [
+  { label: 'Zuweisen', icon: ClipboardList },
+  { label: 'Dokumentieren', icon: Camera },
+  { label: 'Kontrollieren', icon: CircleCheck },
 ]
+
+const contactButton = 'h-auto w-full bg-orange-500 px-4 py-3 text-center text-base font-semibold whitespace-normal text-zinc-950 hover:bg-orange-400'
 
 export default function HandwerkShowcasePage() {
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 space-y-16 px-6 py-12 sm:py-16">
-      <header className="rounded-2xl border border-zinc-800 bg-zinc-900 bg-[radial-gradient(ellipse_at_top_right,#431c0b,transparent_65%)] p-6 sm:p-12">
-        <Link to="/branchen#handwerk" className="text-sm font-medium text-orange-300 hover:underline">Zur Branchenübersicht</Link>
-        <h1 className="mt-5 max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">
-          Websites für Handwerksbetriebe
+    <main className="mx-auto w-full max-w-5xl flex-1 space-y-10 px-4 py-8 sm:px-6 sm:py-12">
+      <section aria-labelledby="handwerk-einstieg">
+        <p className="text-sm font-medium tracking-wide text-orange-400">Digitale Lösungen fürs Handwerk</p>
+        <h1 id="handwerk-einstieg" className="mt-3 max-w-4xl text-4xl font-bold tracking-tight text-zinc-100 sm:text-5xl">
+          Schluss mit dem Chaos auf Ihren Baustellen.
         </h1>
-        <p className="mt-4 max-w-2xl text-lg text-zinc-300">
-          Ein individueller Webauftritt mit optionalen digitalen Modulen für Baustellen, Teams und Kunden.
-          Dieser Showcase zeigt, wie die Lösungen für deinen Betrieb aussehen könnten.
+        <p className="mt-4 font-semibold text-orange-400">Alles dokumentiert. Alles im Blick.</p>
+        <p className="mt-3 text-zinc-200">
+          Keine verstreuten Baustellenfotos, unübersichtlichen Chatverläufe oder verlorenen Stundenzettel mehr.
         </p>
-      </header>
+        <Button asChild className={`mt-4 ${contactButton}`}>
+          <Link to="/#kontakt">Individuelle Lösung anfragen</Link>
+        </Button>
+        <img
+          src="/handwerk/baustelle-dokumentieren.png"
+          alt="Ein Handwerker fotografiert ein Rohr auf der Baustelle mit seinem Smartphone."
+          className="mt-4 aspect-video w-full rounded-xl bg-zinc-900 object-cover"
+          fetchPriority="high"
+        />
 
-      <section aria-labelledby="handwerk-vorteile">
-        <h2 id="handwerk-vorteile" className="mb-5 text-3xl font-semibold">Vorteile für deinen Betrieb</h2>
-        <ul className="grid gap-5 sm:grid-cols-3">
-          {benefits.map(([title, description]) => (
-            <li key={title} className="border-l-2 border-orange-500 pl-4">
-              <h3 className="font-semibold">{title}</h3>
-              <p className="mt-2 text-zinc-300">{description}</p>
+        <h2 className="mt-5 text-2xl font-semibold tracking-tight">Kennen Sie diese Probleme?</h2>
+        <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+          {problems.map((problem) => (
+            <li key={problem} className="rounded-lg bg-stone-800 p-4">
+              <CircleX aria-hidden="true" className="mb-2 size-5 text-orange-400" />
+              {problem}
             </li>
           ))}
         </ul>
       </section>
 
-      <section aria-labelledby="handwerk-module">
-        <h2 id="handwerk-module" className="mb-5 text-3xl font-semibold">Mögliche Zusatzmodule</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {modules.map(([title, description]) => (
-            <Card key={title} className="bg-zinc-900 text-zinc-100 ring-zinc-800">
-              <CardHeader>
-                <CardTitle className="text-lg text-orange-400">{title}</CardTitle>
-                <CardDescription className="text-base text-zinc-300">{description}</CardDescription>
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-        <div className="mt-6 rounded-xl border border-zinc-800 p-5 sm:p-6">
-          <h3 className="text-xl font-semibold">Wer sieht was im Kundenportal?</h3>
-          <p className="mt-2 text-zinc-300">
-            Inhalte sind zunächst intern. Der Betrieb legt den Zugriff pro Baustelle fest, gibt Inhalte einzeln frei und kann den Zugriff widerrufen.
-            Arbeitszeiten und Mitarbeiterdaten bleiben intern. Änderungswünsche gehen als Anfrage an den Betrieb.
-          </p>
-          <dl className="mt-5 grid gap-5 md:grid-cols-3">
-            {accessModes.map(([title, description]) => (
-              <div key={title}>
-                <dt className="font-semibold text-orange-300">{title}</dt>
-                <dd className="mt-1 text-zinc-300">{description}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <section aria-labelledby="handwerk-loesung" className="border-t border-zinc-800 pt-8">
+        <p className="text-sm font-medium tracking-wide text-orange-400">Ihr Betrieb. Digital vernetzt.</p>
+        <h2 id="handwerk-loesung" className="mt-3 text-3xl font-bold tracking-tight sm:text-5xl">
+          Ihre Baustelle. Ihr Team. Eine Plattform.
+        </h2>
+        <p className="mt-3 text-zinc-200">
+          Individuelle Baustellendokumentation, direkt integriert in Ihren digitalen Unternehmensauftritt.
+        </p>
 
-      <section aria-labelledby="handwerk-vorschau">
-        <h2 id="handwerk-vorschau" className="mb-5 text-3xl font-semibold">Dashboard-Vorschau</h2>
-        <figure className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 sm:p-8">
-          <figcaption className="text-sm font-medium text-orange-300">Konzeptvorschau · Fiktive Beispieldaten</figcaption>
-          <h3 className="mt-3 text-xl font-semibold">Betriebsansicht · Sanierung Lindenweg</h3>
-          <dl className="mt-5 grid grid-cols-1 gap-3 min-[360px]:grid-cols-2 md:grid-cols-4">
-            {[
-              ['Baustellenstatus', 'In Arbeit'],
-              ['Team', 'Lea und Jonas'],
-              ['Fotodokumentation', '3 Fortschrittsfotos'],
-              ['Nächster Termin', 'Montag · 08:00 Uhr'],
-            ].map(([label, value]) => (
-              <div key={label} className="rounded-lg bg-zinc-950 p-3">
-                <dt className="text-sm text-zinc-400">{label}</dt>
-                <dd className="mt-1 font-semibold">{value}</dd>
-              </div>
-            ))}
-          </dl>
+        <figure className="mt-4">
+          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-3 sm:p-5">
+            <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+              <h3 className="font-semibold">Baustellenübersicht</h3>
+              <span className="text-sm font-medium text-orange-400">Demo</span>
+            </div>
+            <dl className="grid grid-cols-3 gap-2">
+              {statistics.map(({ label, value }) => (
+                <div key={label} className="flex min-w-0 flex-col-reverse gap-2 rounded-lg bg-stone-800 p-2 sm:p-4">
+                  <dt className="break-words text-sm text-zinc-200">{label}</dt>
+                  <dd className="text-2xl font-semibold text-orange-400 sm:text-3xl">{value}</dd>
+                </div>
+              ))}
+            </dl>
+            <img
+              src="/handwerk/sanierung-lindenweg.png"
+              alt="Teilweise gefliestes Badezimmer während der Sanierung."
+              className="mt-3 aspect-video w-full rounded-xl bg-zinc-950 object-cover"
+              loading="lazy"
+            />
+            <h4 className="mt-3 font-semibold">Sanierung Lindenweg</h4>
+            <div className="mt-3 flex justify-between gap-2 text-sm">
+              <label htmlFor="sanierung-fortschritt" className="text-zinc-300">Baufortschritt</label>
+              <span className="text-orange-400">65 %</span>
+            </div>
+            <progress
+              id="sanierung-fortschritt"
+              value={65}
+              max={100}
+              className="mt-2 block h-1.5 w-full overflow-hidden rounded-full [&::-moz-progress-bar]:bg-orange-500 [&::-webkit-progress-bar]:bg-zinc-700 [&::-webkit-progress-value]:bg-orange-500"
+            />
+            <details className="mt-3">
+              <summary className="cursor-pointer rounded-lg bg-orange-500 px-4 py-2 text-center font-semibold text-zinc-950 hover:bg-orange-400">
+                Fortschritt dokumentieren
+              </summary>
+              <p className="mt-3 rounded-lg bg-zinc-950 p-3 text-sm text-zinc-200">
+                Beispieleintrag: Die Wandfliesen sind gesetzt. Als Nächstes werden die Fugen geschlossen und die Armaturen montiert.
+              </p>
+            </details>
+          </div>
+          <figcaption className="mt-3 text-sm text-zinc-400">Beispielansicht mit fiktiven Daten</figcaption>
         </figure>
-      </section>
 
-      <section aria-labelledby="handwerk-anfrage" className="rounded-xl border border-orange-500/30 bg-zinc-900 p-6 sm:p-8">
-        <h2 id="handwerk-anfrage" className="text-2xl font-semibold">Was braucht dein Betrieb?</h2>
-        <p className="mt-2 text-zinc-300">Erzähl mir, welche Aufgaben du mit deiner Website einfacher machen möchtest.</p>
-        <Button asChild size="lg" className="mt-5 bg-orange-500 font-semibold text-zinc-950 hover:bg-orange-400">
-          <Link to="/#kontakt">Projekt anfragen</Link>
+        <h3 className="mt-6 text-2xl font-semibold tracking-tight">So einfach könnte Ihr Arbeitsalltag werden.</h3>
+        <ul className="mt-3 grid grid-cols-3 gap-2">
+          {workflow.map(({ label, icon: Icon }) => (
+            <li key={label} className="grid justify-items-center gap-2 rounded-lg bg-stone-800 px-1 py-3 text-center text-xs sm:text-base">
+              <Icon aria-hidden="true" className="size-5 text-orange-400" />
+              {label}
+            </li>
+          ))}
+        </ul>
+        <Button asChild className={`mt-4 ${contactButton}`}>
+          <Link to="/#kontakt">Jetzt individuelle Lösung besprechen</Link>
         </Button>
       </section>
     </main>
