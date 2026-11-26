@@ -25,12 +25,23 @@ export default function BranchesPage() {
             <h2 id={id} className="mb-4 text-xl font-semibold">{title}</h2>
             <ul className="grid grid-cols-3 gap-2 sm:gap-3">
               {previewNumbers.map((number) => (
+                id === 'handwerk' && number === 1 ? (
+                  <li key={number}>
+                    <Link
+                      to="/branchen/handwerk"
+                      className="grid h-full min-h-20 place-items-center rounded-md border border-orange-500/50 bg-orange-500/10 p-2 text-center text-sm font-semibold text-orange-300 hover:bg-orange-500/20 focus-visible:outline-2 focus-visible:outline-orange-400"
+                    >
+                      Handwerker-Showcase
+                    </Link>
+                  </li>
+                ) : (
                 <li
                   key={number}
                   className="aspect-[4/3] rounded-md border border-dashed border-zinc-700 bg-zinc-950"
                 >
                   <span className="sr-only">Platzhalter für Vorschau {number}</span>
                 </li>
+                )
               ))}
             </ul>
           </section>
@@ -39,3 +50,5 @@ export default function BranchesPage() {
     </main>
   )
 }
+import { Link } from 'react-router-dom'
+

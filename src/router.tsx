@@ -1,6 +1,7 @@
 import { createBrowserRouter, Link } from 'react-router-dom'
 import SiteLayout from './layouts/SiteLayout'
 import BranchesPage from './pages/BranchesPage'
+import HandwerkShowcasePage from './pages/HandwerkShowcasePage'
 import HomePage from './pages/HomePage'
 import MaintenancePage from './pages/MaintenancePage'
 
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: 'branchen', element: <BranchesPage /> },
+      { path: 'branchen/handwerk', element: <HandwerkShowcasePage /> },
       { path: 'pflege', element: <MaintenancePage /> },
       {
         path: '*',
